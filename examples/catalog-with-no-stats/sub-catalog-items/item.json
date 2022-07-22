@@ -1,0 +1,41 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Feature",
+  "id": "item",
+  "bbox": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      0,
+      0
+    ]
+  },
+  "properties": {
+    "datetime": "2022-03-22T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "./item.json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    }
+  ],
+  "assets": {
+    "thumbnail": {
+      "href": "https://example.com/2022-03-22.png",
+      "title": "Thumbnail",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

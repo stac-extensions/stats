@@ -1,0 +1,60 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Catalog",
+  "id": "catalog",
+  "title": "Example Catalog",
+  "description": "This catalog includes stats for its sub-catalogs, collections, and all items.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./sub-catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "self",
+      "href": "./catalog.json",
+      "type": "application/json"
+    }
+  ],
+  "stats": {
+    "catalogs": {
+      "count": 1,
+      "versions": {
+        "1.0.0": 1
+      }
+    },
+    "collections": {
+      "count": 1,
+      "versions": {
+        "1.0.0": 1
+      }
+    },
+    "items": {
+      "count": 4,
+      "versions": {
+        "1.0.0": 4
+      },
+      "extensions": {
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json": 1
+      },
+      "assets": {
+        "image/jpeg": 3,
+        "image/png": 1,
+        "image/tiff; application=geotiff; profile=cloud-optimized": 3
+      }
+    }
+  },
+  "stac_extensions": [
+    "https://stac-extensions.github.io/stats/v0.0.0/schema.json"
+  ]
+}

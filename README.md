@@ -1,69 +1,59 @@
-# Template Extension Specification
+# Stats Extension Specification
 
-- **Title:** Template
-- **Identifier:** <https://stac-extensions.github.io/template/v1.0.0/schema.json>
-- **Field Name Prefix:** template
-- **Scope:** Item, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
-- **Owner**: @your-gh-handles @person2
+- **Title:** Stats
+- **Identifier:** <https://stac-extensions.github.io/stats/v1.0.0/schema.json>
+- **Scope:** Catalog, Collection
+- **Extension [Maturity
+  Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):**
+  Proposal
+- **Owner**: @tschaub
 
-This document explains the Template Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
-This is the place to add a short introduction.
+This document explains the Stats Extension to the [SpatioTemporal Asset
+Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
 
+Catalogs and collections using this extension include additional information summarizing the resource types included.
+Top-level catalogs can report counts of child catalogs, collections, or items and can include information on the
+versions, extensions, and asset types (in the case of items) used by those resources.
+ 
 - Examples:
-  - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
-  - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [Catalog with all stats](examples/catalog-with-all-stats/catalog.json): Shows the basic usage of the extension in a
+    STAC Item
+  - [Collection with item stats](examples/catalog-with-no-stats/collection.json): Shows the basic usage of the extension
+    in a STAC Collection
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
-## Item Properties and Collection Fields
+## Top-Level Catalog or Collection Fields
 
-| Field Name           | Type                      | Description |
-| -------------------- | ------------------------- | ----------- |
-| template:new_field   | string                    | **REQUIRED**. Describe the required field... |
-| template:xyz         | [XYZ Object](#xyz-object) | Describe the field... |
-| template:another_one | \[number]                 | Describe the field... |
+| Field Name           | Type                           | Description |
+| -------------------- | ------------------------------ | ----------- |
+| stats                | [Stats Object](#stats-object)  | (**REQUIRED**) A lookup of stats. |
 
-### Additional Field Information
+### Stats Object
 
-#### template:new_field
-
-This is a much more detailed description of the field `template:new_field`...
-
-### XYZ Object
-
-This is the introduction for the purpose and the content of the XYZ Object...
+The stats object includes information about the resources included in a catalog or collection.
 
 | Field Name  | Type   | Description |
 | ----------- | ------ | ----------- |
-| x           | number | **REQUIRED**. Describe the required field... |
-| y           | number | **REQUIRED**. Describe the required field... |
-| z           | number | **REQUIRED**. Describe the required field... |
-
-## Relation types
-
-The following types should be used as applicable `rel` types in the
-[Link Object](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#link-object).
-
-| Type                | Description |
-| ------------------- | ----------- |
-| fancy-rel-type      | This link points to a fancy resource. |
+| catalogs    | object | Stats for child catalogs. |
+| collections | object | Stats for child collections. |
+| items       | object | Stats for items linked to by a catalog or collection. |
 
 ## Contributing
 
-All contributions are subject to the
-[STAC Specification Code of Conduct](https://github.com/radiantearth/stac-spec/blob/master/CODE_OF_CONDUCT.md).
-For contributions, please follow the
-[STAC specification contributing guide](https://github.com/radiantearth/stac-spec/blob/master/CONTRIBUTING.md) Instructions
-for running tests are copied here for convenience.
+All contributions are subject to the [STAC Specification Code of
+Conduct](https://github.com/radiantearth/stac-spec/blob/master/CODE_OF_CONDUCT.md). For contributions, please follow the
+[STAC specification contributing guide](https://github.com/radiantearth/stac-spec/blob/master/CONTRIBUTING.md)
+Instructions for running tests are copied here for convenience.
 
 ### Running tests
 
-The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are valid. 
-To run tests locally, you'll need `npm`, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
+The same checks that run as checks on PR's are part of the repository and can be run locally to verify that changes are
+valid. To run tests locally, you'll need `npm`, which is a standard part of any [node.js
+installation](https://nodejs.org/en/download/).
 
-First you'll need to install everything with npm once. Just navigate to the root of this repository and on 
-your command line run:
+First you'll need to install everything with npm once. Just navigate to the root of this repository and on your command
+line run:
 ```bash
 npm install
 ```

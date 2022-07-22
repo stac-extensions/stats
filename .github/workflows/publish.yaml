@@ -1,14 +1,17 @@
-name: Publish JSON Schema
+name: Publish
+
 on:
   release:
-    types: [published]
+    types:
+      - published
+
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Inject env variables
         uses: rlespinasse/github-slug-action@v3.x
-      - uses: actions/checkout@v2
       - name: deploy JSON Schema for version ${{ env.GITHUB_REF_SLUG }}
         uses: peaceiris/actions-gh-pages@v3
         with:

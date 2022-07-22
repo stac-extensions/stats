@@ -1,0 +1,29 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Catalog",
+  "id": "catalog",
+  "title": "Example Catalog",
+  "description": "This catalog doesn't advertise any stats of its own, but its child collections do.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./sub-catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "self",
+      "href": "./catalog.json",
+      "type": "application/json"
+    }
+  ]
+}

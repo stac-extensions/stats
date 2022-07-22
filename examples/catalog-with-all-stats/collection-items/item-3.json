@@ -1,0 +1,85 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Feature",
+  "id": "item-3",
+  "bbox": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      0,
+      0
+    ]
+  },
+  "collection": "collection",
+  "properties": {
+    "datetime": "2022-03-23T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "./item-3.json"
+    },
+    {
+      "rel": "collection",
+      "href": "./collection.json"
+    },
+    {
+      "rel": "root",
+      "href": "./catalog.json"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://example.com/2022-03-23.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "4-Band VNIR",
+      "description": "A image of the item in the collection",
+      "roles": [
+        "data",
+        "reflectance"
+      ],
+      "eo:bands": [
+        {
+          "center_wavelength": 0.47,
+          "common_name": "blue",
+          "description": "Visible blue",
+          "name": "B1"
+        },
+        {
+          "center_wavelength": 0.56,
+          "common_name": "green",
+          "description": "Visible green",
+          "name": "B2"
+        },
+        {
+          "center_wavelength": 0.655,
+          "common_name": "red",
+          "description": "Visible red",
+          "name": "B3"
+        },
+        {
+          "center_wavelength": 0.865,
+          "common_name": "nir",
+          "description": "Near-infrared",
+          "name": "B4"
+        }
+      ]
+    },
+    "thumbnail": {
+      "href": "https://example.com/2022-03-23.jpg",
+      "title": "Thumbnail",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  },
+  "stac_extensions": [
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+  ]
+}

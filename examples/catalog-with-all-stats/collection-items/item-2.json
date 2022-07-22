@@ -1,0 +1,55 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Feature",
+  "id": "item-2",
+  "bbox": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      0,
+      0
+    ]
+  },
+  "collection": "collection",
+  "properties": {
+    "datetime": "2022-03-23T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "./item-2.json"
+    },
+    {
+      "rel": "collection",
+      "href": "./collection.json"
+    },
+    {
+      "rel": "root",
+      "href": "./catalog.json"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://example.com/2022-03-23.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "3-Band Visual",
+      "description": "A visual of the item in the collection",
+      "roles": [
+        "visual"
+      ]
+    },
+    "thumbnail": {
+      "href": "https://example.com/2022-03-23.jpg",
+      "title": "Thumbnail",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

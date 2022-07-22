@@ -1,209 +1,111 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/template/v1.0.0/schema.json#",
-  "title": "Template Extension",
-  "description": "STAC Template Extension for STAC Items and STAC Collections.",
-  "oneOf": [
-    {
-      "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
-      "allOf": [
-        {
-          "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "properties",
-            "assets"
-          ],
-          "properties": {
-            "type": {
-              "const": "Feature"
-            },
-            "properties": {
-              "allOf": [
-                {
-                  "$comment": "Require fields here for Item Properties.",
-                  "required": [
-                    "template:new_field"
-                  ]
-                },
-                {
-                  "$ref": "#/definitions/fields"
-                }
-              ]
-            },
-            "assets": {
-              "$comment": "This validates the fields in Item Assets, but does not require them.",
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
-              }
-            }
-          }
-        }
+  "$id": "https://stac-extensions.github.io/stats/v0.0.0/schema.json#",
+  "title": "Stats Extension",
+  "description": "STAC Stats Extension.",
+  "type": "object",
+  "required": [
+    "type",
+    "stac_extensions",
+    "stats"
+  ],
+  "properties": {
+    "type": {
+      "enum": [
+        "Catalog",
+        "Collection"
       ]
     },
-    {
-      "$comment": "This is the schema for STAC Collections.",
-      "type": "object",
-      "allOf": [
-        {
-          "required": [
-            "type"
-          ],
-          "properties": {
-            "type": {
-              "const": "Collection"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        }
-      ],
-      "anyOf": [
-        {
-          "$comment": "This is the schema for the top-level fields in a Collection. Remove this if this extension does not define top-level fields for Collections.",
-          "allOf": [
-            {
-              "$comment": "Require fields here for Collections (top-level).",
-              "required": [
-                "template:new_field"
-              ]
-            },
-            {
-              "$ref": "#/definitions/fields"
-            }
-          ]
-        },
-        {
-          "$comment": "This validates the fields in Collection Assets, but does not require them.",
-          "required": [
-            "assets"
-          ],
-          "properties": {
-            "assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "allOf": [
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "This is the schema for the fields in Item Asset Definitions. It doesn't require any fields.",
-          "required": [
-            "item_assets"
-          ],
-          "properties": {
-            "item_assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "allOf": [
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "This is the schema for the fields in Summaries. By default, only checks the existance of the properties, but not the schema of the summaries.",
-          "required": [
-            "summaries"
-          ],
-          "properties": {
-            "summaries": {
-              "$ref": "#/definitions/require_any_field"
-            }
-          }
-        }
-      ]
-    }
-  ],
-  "definitions": {
     "stac_extensions": {
+      "type": "array",
+      "contains": {
+        "const": "https://stac-extensions.github.io/stats/v0.0.0/schema.json"
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "catalogs": {
+          "$ref": "#/definitions/stats_for_catalogs"
+        },
+        "collections": {
+          "$ref": "#/definitions/stats_for_collections"
+        },
+        "items": {
+          "$ref": "#/definitions/stats_for_items"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "stats_for_catalogs": {
       "type": "object",
       "required": [
-        "stac_extensions"
+        "count"
       ],
+      "additionalProperties": false,
       "properties": {
-        "stac_extensions": {
-          "type": "array",
-          "contains": {
-            "const": "https://stac-extensions.github.io/template/v1.0.0/schema.json"
-          }
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "conformance": {
+          "$ref": "#/definitions/object_with_integer_properties"
         }
       }
     },
-    "require_any_field": {
-      "$comment": "Please list all fields here so that we can force the existance of one of them in other parts of the schemas.",
-      "anyOf": [
-        {"required": ["template:new_field"]},
-        {"required": ["template:xyz"]},
-        {"required": ["template:another_one"]}
-      ]
-    },
-    "fields": {
-      "$comment": "Add your new fields here. Don't require them here, do that above in the corresponding schema.",
+    "stats_for_collections": {
       "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
       "properties": {
-        "template:new_field": {
-          "type": "string"
+        "count": {
+          "type": "integer"
         },
-        "template:xyz": {
-          "type": "object",
-          "required": [
-            "x",
-            "y",
-            "z"
-          ],
-          "properties": {
-            "x": {
-              "type": "number"
-            },
-            "y": {
-              "type": "number"
-            },
-            "z": {
-              "type": "number"
-            }
-          }
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
         },
-        "template:another_one": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          }
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
         }
-      },
+      }
+    },
+    "stats_for_items": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "assets": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "object_with_integer_properties": {
+      "type": "object",
       "patternProperties": {
-        "^(?!template:)": {
-          "$comment": "Above, change `template` to the prefix of this extension"
+        ".*": {
+          "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }
