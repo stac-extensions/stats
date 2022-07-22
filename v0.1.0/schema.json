@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stac-extensions.github.io/stats/v0.0.0/schema.json#",
+  "title": "Stats Extension",
+  "description": "STAC Stats Extension.",
+  "type": "object",
+  "required": [
+    "type",
+    "stac_extensions",
+    "stats"
+  ],
+  "properties": {
+    "type": {
+      "enum": [
+        "Catalog",
+        "Collection"
+      ]
+    },
+    "stac_extensions": {
+      "type": "array",
+      "contains": {
+        "const": "https://stac-extensions.github.io/stats/v0.0.0/schema.json"
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "catalogs": {
+          "$ref": "#/definitions/stats_for_catalogs"
+        },
+        "collections": {
+          "$ref": "#/definitions/stats_for_collections"
+        },
+        "items": {
+          "$ref": "#/definitions/stats_for_items"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "stats_for_catalogs": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "conformance": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "stats_for_collections": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "stats_for_items": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "assets": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "object_with_integer_properties": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
