@@ -1,7 +1,7 @@
 # Stats Extension Specification
 
 - **Title:** Stats
-- **Identifier:** <https://stac-extensions.github.io/stats/v1.0.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/stats/v0.1.0/schema.json>
 - **Scope:** Catalog, Collection
 - **Extension [Maturity
   Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):**
