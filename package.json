@@ -1,11 +1,11 @@
 {
   "name": "stac-extensions",
-  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "test": "npm run check-markdown && npm run check-examples && jest",
     "check-markdown": "remark . -f -r .github/remark.yaml",
-    "check-examples": "stac-node-validator . --lint --verbose --schemaMap https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json=./json-schema/schema.json",
-    "format-examples": "stac-node-validator . --format --schemaMap https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json=./json-schema/schema.json"
+    "check-examples": "stac-node-validator . --lint --verbose --schemaMap https://stac-extensions.github.io/stats/v0.2.0/schema.json=./json-schema/schema.json",
+    "format-examples": "stac-node-validator . --format --schemaMap https://stac-extensions.github.io/stats/v0.2.0/schema.json=./json-schema/schema.json"
   },
   "dependencies": {
     "remark-cli": "^10.0.1",
