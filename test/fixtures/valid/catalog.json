@@ -36,6 +36,6 @@
     }
   },
   "stac_extensions": [
-    "https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json"
+    "https://stac-extensions.github.io/stats/v0.2.0/schema.json"
   ]
 }

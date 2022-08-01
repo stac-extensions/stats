@@ -2,7 +2,7 @@ const util = require('node:util');
 const exec = util.promisify(require('node:child_process').exec);
 
 function validate(fixture) {
-  return `npx stac-node-validator ./test/fixtures/${fixture} --lint --verbose --schemaMap https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json=./json-schema/schema.json`;
+  return `npx stac-node-validator ./test/fixtures/${fixture} --lint --verbose --schemaMap https://stac-extensions.github.io/stats/v0.2.0/schema.json=./json-schema/schema.json`;
 }
 
 const validCases = [
