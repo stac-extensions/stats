@@ -1,0 +1,19 @@
+{
+  "stac_version": "1.0.0",
+  "type": "Catalog",
+  "id": "catalog",
+  "title": "Example Catalog",
+  "description": "This catalog has no stats.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "self",
+      "href": "./catalog.json",
+      "type": "application/json"
+    }
+  ]
+}

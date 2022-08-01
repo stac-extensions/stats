@@ -1,19 +1,14 @@
 {
   "stac_version": "1.0.0",
   "type": "Catalog",
-  "id": "sub-catalog",
+  "id": "catalog",
   "title": "Example Catalog",
-  "description": "This catalog advertises stats of its own children.",
+  "description": "This catalog includes stats for its sub-catalogs, collections, and all items.",
   "links": [
     {
       "rel": "root",
       "href": "./catalog.json",
       "type": "application/json"
-    },
-    {
-      "rel": "item",
-      "href": "./sub-catalog-items/item.json",
-      "type": "application/geo+json"
     },
     {
       "rel": "self",
@@ -22,13 +17,7 @@
     }
   ],
   "stats:items": {
-    "count": 1,
-    "versions": {
-      "1.0.0": 1
-    },
-    "assets": {
-      "image/png": 1
-    }
+    "count": false
   },
   "stac_extensions": [
     "https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json"

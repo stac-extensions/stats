@@ -1,13 +1,35 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/stats/v0.1.0/schema.json#",
+  "$id": "https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json#",
   "title": "Stats Extension",
   "description": "STAC Stats Extension.",
   "type": "object",
-  "required": [
-    "type",
-    "stac_extensions",
-    "stats"
+  "allOf": [
+    {
+      "required": [
+        "type",
+        "stac_extensions"
+      ]
+    },
+    {
+      "anyOf": [
+        {
+          "required": [
+            "stats:catalogs"
+          ]
+        },
+        {
+          "required": [
+            "stats:collections"
+          ]
+        },
+        {
+          "required": [
+            "stats:items"
+          ]
+        }
+      ]
+    }
   ],
   "properties": {
     "type": {
@@ -19,25 +41,25 @@
     "stac_extensions": {
       "type": "array",
       "contains": {
-        "const": "https://stac-extensions.github.io/stats/v0.1.0/schema.json"
+        "const": "https://stac-extensions.github.io/stats/v0.2.0-dev/schema.json"
       }
     },
-    "stats": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "catalogs": {
-          "$ref": "#/definitions/stats_for_catalogs"
-        },
-        "collections": {
-          "$ref": "#/definitions/stats_for_collections"
-        },
-        "items": {
-          "$ref": "#/definitions/stats_for_items"
-        }
-      }
+    "stats:catalogs": {
+      "$ref": "#/definitions/stats_for_catalogs"
+    },
+    "stats:collections": {
+      "$ref": "#/definitions/stats_for_collections"
+    },
+    "stats:items": {
+      "$ref": "#/definitions/stats_for_items"
     }
   },
+  "patternProperties": {
+    "^(?!stats:)": {
+      "$comment": "Disallow any other properties starting with `stats:`"
+    }
+  },
+  "additionalProperties": false,
   "definitions": {
     "stats_for_catalogs": {
       "type": "object",
