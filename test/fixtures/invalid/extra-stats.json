@@ -1,9 +1,9 @@
 {
   "stac_version": "1.0.0",
   "type": "Catalog",
-  "id": "sub-catalog",
+  "id": "catalog",
   "title": "Example Catalog",
-  "description": "This catalog advertises stats of its own children.",
+  "description": "This catalog includes stats for its sub-catalogs, collections, and all items.",
   "links": [
     {
       "rel": "root",
@@ -11,22 +11,30 @@
       "type": "application/json"
     },
     {
-      "rel": "item",
-      "href": "./sub-catalog-items/item.json",
-      "type": "application/geo+json"
-    },
-    {
       "rel": "self",
       "href": "./catalog.json",
       "type": "application/json"
     }
   ],
-  "stats:items": {
+  "stats:oops": {
+    "count": 42
+  },
+  "stats:catalogs": {
     "count": 1,
     "versions": {
       "1.0.0": 1
-    },
+    }
+  },
+  "stats:collections": {
+    "count": 2,
+    "extensions": {
+      "https://example.com/stac-extension": 1
+    }
+  },
+  "stats:items": {
+    "count": 3,
     "assets": {
+      "image/jpeg": 1,
       "image/png": 1
     }
   },
