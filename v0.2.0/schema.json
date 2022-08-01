@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://stac-extensions.github.io/stats/v0.2.0/schema.json#",
+  "title": "Stats Extension",
+  "description": "STAC Stats Extension.",
+  "type": "object",
+  "allOf": [
+    {
+      "required": [
+        "type",
+        "stac_extensions"
+      ]
+    },
+    {
+      "anyOf": [
+        {
+          "required": [
+            "stats:catalogs"
+          ]
+        },
+        {
+          "required": [
+            "stats:collections"
+          ]
+        },
+        {
+          "required": [
+            "stats:items"
+          ]
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "type": {
+      "enum": [
+        "Catalog",
+        "Collection"
+      ]
+    },
+    "stac_extensions": {
+      "type": "array",
+      "contains": {
+        "const": "https://stac-extensions.github.io/stats/v0.2.0/schema.json"
+      }
+    },
+    "stats:catalogs": {
+      "$ref": "#/definitions/stats_for_catalogs"
+    },
+    "stats:collections": {
+      "$ref": "#/definitions/stats_for_collections"
+    },
+    "stats:items": {
+      "$ref": "#/definitions/stats_for_items"
+    }
+  },
+  "patternProperties": {
+    "^(?!stats:)": {
+      "$comment": "Disallow any other properties starting with `stats:`"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "stats_for_catalogs": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "conformance": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "stats_for_collections": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "stats_for_items": {
+      "type": "object",
+      "required": [
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "extensions": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        },
+        "assets": {
+          "$ref": "#/definitions/object_with_integer_properties"
+        }
+      }
+    },
+    "object_with_integer_properties": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
