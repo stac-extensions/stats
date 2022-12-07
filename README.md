@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/stats/v0.2.0/schema.json>
 - **Field Name Prefix**: stats
 - **Scope:** Catalog, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Pilot
 - **Owner**: @tschaub
 
 This document explains the Stats Extension to the [SpatioTemporal Asset
